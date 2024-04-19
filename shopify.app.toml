@@ -1,0 +1,28 @@
+# Learn more about configuring your app at https://shopify.dev/docs/apps/tools/cli/configuration
+
+client_id = "6f15eddc569e5e15e27c48ee072a95c1"
+name = "Develop - Jessie"
+handle = "develop-jessie"
+application_url = "https://crazy-instrument-warrant-trackbacks.trycloudflare.com"
+embedded = true
+
+[build]
+automatically_update_urls_on_dev = true
+dev_store_url = "checkout-extension-research.myshopify.com"
+
+[access_scopes]
+# Learn more at https://shopify.dev/docs/apps/tools/cli/configuration#access_scopes
+scopes = "write_products"
+
+[auth]
+redirect_urls = [
+  "https://crazy-instrument-warrant-trackbacks.trycloudflare.com/auth/callback",
+  "https://crazy-instrument-warrant-trackbacks.trycloudflare.com/auth/shopify/callback",
+  "https://crazy-instrument-warrant-trackbacks.trycloudflare.com/api/auth/callback"
+]
+
+[webhooks]
+api_version = "2023-10"
+
+[pos]
+embedded = false
