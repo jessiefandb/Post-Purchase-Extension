@@ -15,15 +15,16 @@ import {
   TextBlock,
   Layout,
 } from "@shopify/post-purchase-ui-extensions-react";
-
 // For local development, replace APP_URL with your local tunnel URL.
-const APP_URL = "https://pn-mineral-cardiac-meetings.trycloudflare.com";
+const APP_URL = "https://program-comment-mobiles-exclusively.trycloudflare.com";
+
 
 // Preload data from your app server to ensure that the extension loads quickly.
 extend(
   "Checkout::PostPurchase::ShouldRender",
   async ({ inputData, storage }) => {
     const purchaseLineItems = inputData.initialPurchase.lineItems;
+
     const postPurchaseOffer = await fetch(`${APP_URL}/api/offer`, {
       method: "POST",
       headers: {
@@ -35,38 +36,12 @@ extend(
         items: purchaseLineItems.map((item) => ({
           productId: item.product.id,
           productTitle: item.product.title,
-          quantity: item.quantity,
+          quantity: item.quantity
         }))
       }),
     }).then((response) => response.json().catch((e) => console.log(e)))
 
-    // const postPurchaseOffer = {
-    //   offers: [
-    //     {
-    //       id: 1,
-    //       title: "One time offer",
-    //       productTitle: "Body Wash",
-    //       productImageURL:
-    //         "https://cdn.shopify.com/s/files/1/0607/1897/3068/products/reactLOGO.png",
-    //       productDescription: ["This PREMIUM snowboard is so SUPER DUPER awesome!"],
-    //       originalPrice: "2000.00",
-    //       discountedPrice: "699.95",
-    //       changes: [
-    //         {
-    //           type: "add_variant",
-    //           variantID: 42629701763212,
-    //           quantity: 1,
-    //           discount: {
-    //             value: 15,
-    //             valueType: "percentage",
-    //             title: "15% off",
-    //           },
-    //         },
-    //       ],
-    //     },
-    //   ]
-    // }
-
+    console.log(postPurchaseOffer)
     await storage.update(postPurchaseOffer);
 
     // For local development, always show the post-purchase page
@@ -145,6 +120,7 @@ export function App() {
     // Redirect to the thank-you page
     done();
   }
+
 
   return (
     <BlockStack spacing="loose">
